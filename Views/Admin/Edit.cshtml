@@ -1,0 +1,61 @@
+﻿@model EditUserViewModel
+
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="UserId" />
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" disabled />
+    </div>
+
+    <div>
+        <h3>Roles</h3>
+        @foreach (var role in Model.Roles)
+        {
+            <div>
+                <input type="checkbox" name="RoleSelections[@role.Name]"
+                       value="true"
+                @(Model.RoleSelections.ContainsKey(role.Name) && Model.RoleSelections[role.Name] ? "checked" : "") />
+                <label>@role.Name</label>
+            </div>
+        }
+    </div>
+
+    <div>
+        <h3>Claims</h3>
+        @if (Model.UserClaims.Any())
+        {
+            @foreach (var claim in Model.UserClaims)
+            {
+                <div>
+                    <input type="checkbox" name="ClaimSelections[@claim.Type + ':' + claim.Value]"
+                           value="true"
+                    @(Model.ClaimSelections.ContainsKey(claim.Type + ':' + claim.Value) && Model.ClaimSelections[claim.Type + ':' + claim.Value] ? "checked" : "") />
+                    <label>@claim.Type: @claim.Value</label>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No claims assigned to this user.</p>
+        }
+
+        <h4>Add New Claims</h4>
+        @foreach (var claim in Model.AvailableClaims)
+        {
+            <div>
+                <input type="checkbox" name="ClaimSelections[@claim.Type + ':' + claim.Value]"
+                       value="true" />
+                <label>@claim.Type: @claim.Value</label>
+            </div>
+        }
+    </div>
+
+
+    <button type="submit">Save</button>
+</form>
