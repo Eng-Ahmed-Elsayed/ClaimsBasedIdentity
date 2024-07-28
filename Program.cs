@@ -16,6 +16,12 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("RetrivePolicy", policy => policy.RequireClaim("RetrivePermission"))
+    .AddPolicy("AddPolicy", policy => policy.RequireClaim("AddPermission"))
+    .AddPolicy("UpdatePolicy", policy => policy.RequireClaim("UpdatePermission"))
+    .AddPolicy("DeletePolicy", policy => policy.RequireClaim("DeletePermission"));
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
