@@ -4,58 +4,57 @@
     ViewData["Title"] = "Edit User";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="mb-4">@ViewData["Title"]</h1>
 
 <form asp-action="Edit" method="post">
     <input type="hidden" asp-for="UserId" />
-    <div>
-        <label asp-for="Email"></label>
-        <input asp-for="Email" disabled />
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" disabled />
     </div>
 
-    <div>
+    <div class="mb-4">
         <h3>Roles</h3>
         @foreach (var role in Model.Roles)
         {
-            <div>
-                <input type="checkbox" name="RoleSelections[@role.Name]"
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="RoleSelections[@role.Name]"
                        value="true"
                 @(Model.RoleSelections.ContainsKey(role.Name) && Model.RoleSelections[role.Name] ? "checked" : "") />
-                <label>@role.Name</label>
+                <label class="form-check-label">@role.Name</label>
             </div>
         }
     </div>
 
-    <div>
+    <div class="mb-4">
         <h3>Claims</h3>
         @if (Model.UserClaims.Any())
         {
             @foreach (var claim in Model.UserClaims)
             {
-                <div>
-                    <input type="checkbox" name="ClaimSelections[@claim.Type + ':' + @claim.Value]"
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="ClaimSelections[@claim.Type + ':' + @claim.Value]"
                            value="true"
                     @(Model.ClaimSelections.ContainsKey(claim.Type + ':' + claim.Value) && Model.ClaimSelections[claim.Type + ':' + claim.Value] ? "checked" : "") />
-                    <label>@claim.Type: @claim.Value</label>
+                    <label class="form-check-label">@claim.Type: @claim.Value</label>
                 </div>
             }
         }
         else
         {
-            <p>No claims assigned to this user.</p>
+            <p class="text-muted">No claims assigned to this user.</p>
         }
 
-        <h4>Add New Claims</h4>
+        <h4 class="mt-4">Add New Claims</h4>
         @foreach (var claim in Model.AvailableClaims)
         {
-            <div>
-                <input type="checkbox" name="ClaimSelections[@claim.Type + ':' + @claim.Value]"
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="ClaimSelections[@claim.Type + ':' + @claim.Value]"
                        value="true" />
-                <label>@claim.Type: @claim.Value</label>
+                <label class="form-check-label">@claim.Type: @claim.Value</label>
             </div>
         }
     </div>
 
-
-    <button type="submit">Save</button>
+    <button type="submit" class="btn btn-primary">Save</button>
 </form>

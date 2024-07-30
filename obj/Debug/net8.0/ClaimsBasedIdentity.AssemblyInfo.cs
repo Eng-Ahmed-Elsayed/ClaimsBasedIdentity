@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ClaimsBasedIdentity")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ae1fd2bc353d0ff9d2d44201fa13be5d0f74278")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3d5e8abef55c942bbc27fb05621cd3b6809ea0b7")]
 [assembly: System.Reflection.AssemblyProductAttribute("ClaimsBasedIdentity")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ClaimsBasedIdentity")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
